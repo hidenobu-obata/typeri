@@ -4,43 +4,33 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-[SerializeField] AudioSource audioSourceBGM = default;
-[SerializeField] AudioClip[] audioClips = default;
+	[SerializeField] AudioSource audioSourceBGM = default;
+	[SerializeField] AudioClip[] audioClips = default;
 
-public enum BGM
-{
-  Title,
-  Main
-
-}
-
-public static SoundManager instance;
-
-private void Awake()
-{
-	if(instance == null)
+	public enum BGM
 	{
-      instance = this;
-	  DontDestroyOnLoad(gameObject);
+		Title,
+		Main
 	}
-   else
-   {
-      Destroy(gameObject);
 
-   }
+	public static SoundManager instance;
 
- }
+	private void Awake()
+	{
+		if (instance == null)
+		{
+			instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+	}
 
-
-
-public void PlayBGM(BGM bgm)
-{
- audioSourceBGM. clip = audioClips[(int)bgm];
- audioSourceBGM.Play();
-
+	public void PlayBGM(BGM bgm)
+	{
+		audioSourceBGM.clip = audioClips[(int)bgm];
+		audioSourceBGM.Play();
+	}
 }
-
-
-
-
-

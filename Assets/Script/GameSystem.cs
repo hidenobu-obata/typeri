@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagemaent;
+using UnityEngine.SceneManagement;
 
 
 public class GameSystem : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-     SoundManager.instance.PlayBGM(Soundmanager.BGM.Main);   
+        SoundManager.instance.PlayBGM(SoundManager.BGM.Main);
     }
 
-   
+    public void Retry()
+    {
+        string thisScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(thisScene);
+    }
 }

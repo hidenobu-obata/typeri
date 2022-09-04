@@ -22,6 +22,9 @@ public class TypingManager : MonoBehaviour
     [SerializeField] TextAsset _question;
     [SerializeField] TextAsset _answer;
 
+    // inputFiled
+    [SerializeField] InputField inputField;
+
     // テキストデータを格納するためのリスト
     private List<string> _fList = new List<string>();
     private List<string> _qList = new List<string>();
@@ -38,6 +41,9 @@ public class TypingManager : MonoBehaviour
       // 問題の何文字目か
     private int _aNum;
 
+    int score;
+    [SerializeField] Text scoreText;
+
     // ゲームを始めた時に1度だけ呼ばれるもの
     void Start()
     {
@@ -51,23 +57,45 @@ public class TypingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(_aString[_aNum].ToString()))
+        // InputFieldに入力した文字と _aString[_aNum].ToString() の比較をして同じなら
+        if (!string.IsNullOrEmpty(inputField.text))
         {
-            // 正解
-            Correct();
-
-            // 最後の文字に正解したら
-            if (_aNum >= _aString.Length)
+            if (inputField.text[0] == _aString[_aNum])
             {
-                // 問題を変える
-                OutPut();
+                // 正解
+                Correct();
+
+                // 最後の文字に正解したら
+                if (_aNum >= _aString.Length)
+                {
+                    // 問題を変える
+                    OutPut();
+                }
             }
+            else
+            {
+                Miss();
+            }
+            inputField.text = "";
         }
-        else if (Input.anyKeyDown)
-        {
-            // 失敗
-            Miss();
-        }
+
+        //if (Input.GetKeyDown(_aString[_aNum].ToString()))
+        //{
+        //    // 正解
+        //    Correct();
+
+        //    // 最後の文字に正解したら
+        //    if (_aNum >= _aString.Length)
+        //    {
+        //        // 問題を変える
+        //        OutPut();
+        //    }
+        //}
+        //else if (Input.anyKeyDown)
+        //{
+        //    // 失敗
+        //    Miss();
+        //}
     }
 
  void SetList()
@@ -104,17 +132,21 @@ public class TypingManager : MonoBehaviour
   // 正解用の関数
     void Correct()
     {
+        score += 100;
         // 正解した時の処理（やりたいこと）
         _aNum++;
          aText.text = "<color=#6A6A6A>" + _aString.Substring(0, _aNum) + "</color>" + _aString.Substring(_aNum);
         Debug.Log(_aNum);
+        scoreText.text = $"{score}点";
     }
 
     // 間違え用の関数
     void Miss()
     {
-    // 間違えた時にやりたいこと
-      aText.text = "<color=#6A6A6A>" + _aString.Substring(0, _aNum) + "</color>"
+        score -= 10;
+        scoreText.text = $"{score}点";
+        // 間違えた時にやりたいこと
+        aText.text = "<color=#6A6A6A>" + _aString.Substring(0, _aNum) + "</color>"
             + "<color=#FF0000>" + _aString.Substring(_aNum, 1) + "</color>"
             + _aString.Substring(_aNum + 1);
     }
