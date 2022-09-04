@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagemaent;
+
 
 public class GameSystem : MonoBehaviour
 {
@@ -10,9 +12,5 @@ public class GameSystem : MonoBehaviour
      SoundManager.instance.PlayBGM(Soundmanager.BGM.Main);   
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }

@@ -29,9 +29,7 @@ private void Awake()
 
    }
 
-}
-
-
+ }
 
 
 
@@ -46,4 +44,3 @@ public void PlayBGM(BGM bgm)
 
 
 
-}
