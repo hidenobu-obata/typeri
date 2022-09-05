@@ -123,50 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &39172074
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 39172076}
-  - component: {fileID: 39172075}
-  m_Layer: 0
-  m_Name: GameSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &39172075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39172074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19f565fa23e69f34d9b839c0a961ce83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &39172076
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39172074}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &335393040
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,8 +936,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSourceBGM: {fileID: 2146254380}
   audioClips:
-  - {fileID: 8300000, guid: 315edc9603fca47d7a3d1eb3ab2e4bf9, type: 3}
-  - {fileID: 8300000, guid: 2e2362e5b924846508be96e892db67b3, type: 3}
+  - {fileID: 8300000, guid: 400e3721bcae8bf4cbab834347248b0f, type: 3}
+  - {fileID: 8300000, guid: c34e03e83881b824cbdc0c4d805e143e, type: 3}
 --- !u!4 &2146254382
 Transform:
   m_ObjectHideFlags: 0
