@@ -12,11 +12,14 @@ int timeCount;
 
 [SerializeField] GameObject resultPanel = default;
 
+int score;
+    [SerializeField] Text scoreText;
+
 bool gameOver;
 
     void Start()
     {
-        timeCount = 90;
+        timeCount = 85;
         SoundManager.instance.PlayBGM(SoundManager.BGM.Main);
         StartCoroutine(CountDown());
         
@@ -33,9 +36,12 @@ bool gameOver;
         }
         Debug.Log("timeup");
         gameOver = true;
+   
 
         resultPanel.SetActive(true);
 
+        // Type == Number ÇÃèÍçá
+naichilab.RankingLoader.Instance.SendScoreAndShowRanking (score);
     }
 
     public void OnRetryButton()
@@ -44,6 +50,22 @@ bool gameOver;
     SceneManager.LoadScene("Main");
 
 }
+
+void Correct()
+    {
+        score += 400;
+     
+        scoreText.text =  score;
+    }
+
+    // ä‘à·Ç¶ópÇÃä÷êî
+    void Miss()
+    {
+        score -= 10;
+        scoreText.text =  score;
+       
+    }
+
 
 void Update()
     {

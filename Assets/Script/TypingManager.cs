@@ -41,8 +41,7 @@ public class TypingManager : MonoBehaviour
       // 問題の何文字目か
     private int _aNum;
 
-    int score;
-    [SerializeField] Text scoreText;
+    
 
     // ゲームを始めた時に1度だけ呼ばれるもの
     void Start()
@@ -98,18 +97,22 @@ public class TypingManager : MonoBehaviour
         //}
     }
 
- void SetList()
+ 
+void SetList()
     {
-        string[] _fArray = _furigana.text.Split('\n');
+        string[] _fArray = _furigana.text.Split(new char[] { '\r', '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
         _fList.AddRange(_fArray);
 
-        string[] _qArray = _question.text.Split('\n');
+        string[] _qArray = _question.text.Split(new char[] { '\r', '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
         _qList.AddRange(_qArray);
 
-        string[] _aArray = _answer.text.Split('\n');
+        string[] _aArray = _answer.text.Split(new char[] { '\r', '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
         _aList.AddRange(_aArray);
     }
-   
+
+
+
+
     // 問題を出すための関数
     void OutPut()
     {
@@ -129,22 +132,22 @@ public class TypingManager : MonoBehaviour
         qText.text = _qString;
         aText.text = _aString;
     }
-  // 正解用の関数
+    // 正解用の関数
     void Correct()
     {
-        score += 100;
+      
         // 正解した時の処理（やりたいこと）
         _aNum++;
          aText.text = "<color=#6A6A6A>" + _aString.Substring(0, _aNum) + "</color>" + _aString.Substring(_aNum);
         Debug.Log(_aNum);
-        scoreText.text = $"{score}点";
+       
     }
 
     // 間違え用の関数
     void Miss()
     {
-        score -= 10;
-        scoreText.text = $"{score}点";
+       
+       
         // 間違えた時にやりたいこと
         aText.text = "<color=#6A6A6A>" + _aString.Substring(0, _aNum) + "</color>"
             + "<color=#FF0000>" + _aString.Substring(_aNum, 1) + "</color>"
