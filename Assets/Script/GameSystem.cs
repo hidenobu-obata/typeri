@@ -7,73 +7,79 @@ using UnityEngine.UI;
 public class GameSystem : MonoBehaviour
 {
 
-[SerializeField] Text timerText = default;
-int timeCount;
+    [SerializeField] Text timerText = default;
+    int timeCount;
 
-[SerializeField] GameObject resultPanel = default;
+    [SerializeField] GameObject resultPanel = default;
 
-int score;
+    int score;
     [SerializeField] Text scoreText;
 
-bool gameOver;
+    bool gameOver;
 
+    public static GameSystem Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
     void Start()
     {
         timeCount = 85;
         SoundManager.instance.PlayBGM(SoundManager.BGM.Main);
         StartCoroutine(CountDown());
-        
+
     }
 
-   IEnumerator CountDown()
+    IEnumerator CountDown()
     {
         while (timeCount > 0)
         {
 
-        yield return new WaitForSeconds(1);
-        timeCount--;
-        timerText.text = timeCount.ToString();
+            yield return new WaitForSeconds(1);
+            timeCount--;
+            timerText.text = timeCount.ToString();
         }
         Debug.Log("timeup");
         gameOver = true;
-   
+
 
         resultPanel.SetActive(true);
-
-        // Type == Number ÇÃèÍçá
-naichilab.RankingLoader.Instance.SendScoreAndShowRanking (score);
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(score);
     }
 
     public void OnRetryButton()
 
-{
-    SceneManager.LoadScene("Main");
+    {
+        SceneManager.LoadScene("Main");
 
-}
+    }
 
-void Correct()
+    public void Correct()
     {
         score += 400;
-     
-        scoreText.text =  score;
+
+        scoreText.text = score.ToString();
     }
 
-    // ä‘à·Ç¶ópÇÃä÷êî
-    void Miss()
+    public void Miss()
     {
         score -= 10;
-        scoreText.text =  score;
-       
-    }
-
-
-void Update()
-    {
-    if(gameOver)
-    {
-    return;
+        scoreText.text = score.ToString();
 
     }
+
+
+    void Update()
+    {
+        if (gameOver)
+        {
+            return;
+
+        }
 
 
     }

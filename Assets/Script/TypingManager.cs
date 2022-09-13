@@ -11,13 +11,13 @@ public class TypingManager : MonoBehaviour
     [SerializeField] Text qText; // 問題用のテキスト
     [SerializeField] Text aText; // 答え用のテキスト
 
-     /*
-    // 問題を用意しておく
-    private string[] _furigana = { "へやとわいしゃつとわたし", "どくいりすーぷで", "あなたのみぎのまゆ" };
-    private string[] _question = { "部屋とYシャツと私", "毒入りスープで", "あなたの右の眉" };
-    private string[] _answer = { "heyatowaishatutowatashi", "dokuirisuupude", "anatanomiginomayu" };*/
+    /*
+   // 問題を用意しておく
+   private string[] _furigana = { "へやとわいしゃつとわたし", "どくいりすーぷで", "あなたのみぎのまゆ" };
+   private string[] _question = { "部屋とYシャツと私", "毒入りスープで", "あなたの右の眉" };
+   private string[] _answer = { "heyatowaishatutowatashi", "dokuirisuupude", "anatanomiginomayu" };*/
 
-     // テキストデータを読み込む
+    // テキストデータを読み込む
     [SerializeField] TextAsset _furigana;
     [SerializeField] TextAsset _question;
     [SerializeField] TextAsset _answer;
@@ -38,18 +38,18 @@ public class TypingManager : MonoBehaviour
     // 何番目の問題か
     private int _qNum;
 
-      // 問題の何文字目か
+    // 問題の何文字目か
     private int _aNum;
 
-    
+
 
     // ゲームを始めた時に1度だけ呼ばれるもの
     void Start()
     {
-  // テキストデータをリストに入れる
+        // テキストデータをリストに入れる
         SetList();
 
-   // 問題を出す
+        // 問題を出す
         OutPut();
     }
 
@@ -97,8 +97,8 @@ public class TypingManager : MonoBehaviour
         //}
     }
 
- 
-void SetList()
+
+    void SetList()
     {
         string[] _fArray = _furigana.text.Split(new char[] { '\r', '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
         _fList.AddRange(_fArray);
@@ -119,15 +119,15 @@ void SetList()
         // 0番目の文字に戻す
         _aNum = 0;
 
-         // _qNumに０〜問題数の数までのランダムな数字を1つ入れる
-       _qNum = Random.Range(0, _qList.Count);
+        // _qNumに０〜問題数の数までのランダムな数字を1つ入れる
+        _qNum = Random.Range(0, _qList.Count);
 
-          _fString = _fList[_qNum];
+        _fString = _fList[_qNum];
         _qString = _qList[_qNum];
         _aString = _aList[_qNum];
 
         // 文字を変更する
-     
+
         fText.text = _fString;
         qText.text = _qString;
         aText.text = _aString;
@@ -135,22 +135,23 @@ void SetList()
     // 正解用の関数
     void Correct()
     {
-      
+
         // 正解した時の処理（やりたいこと）
         _aNum++;
-         aText.text = "<color=#6A6A6A>" + _aString.Substring(0, _aNum) + "</color>" + _aString.Substring(_aNum);
+        aText.text = "<color=#6A6A6A>" + _aString.Substring(0, _aNum) + "</color>" + _aString.Substring(_aNum);
         Debug.Log(_aNum);
-       
+        GameSystem.Instance.Correct();
     }
 
     // 間違え用の関数
     void Miss()
     {
-       
-       
+
+
         // 間違えた時にやりたいこと
         aText.text = "<color=#6A6A6A>" + _aString.Substring(0, _aNum) + "</color>"
             + "<color=#FF0000>" + _aString.Substring(_aNum, 1) + "</color>"
             + _aString.Substring(_aNum + 1);
+        GameSystem.Instance.Miss();
     }
 }
